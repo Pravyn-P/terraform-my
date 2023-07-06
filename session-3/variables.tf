@@ -5,6 +5,12 @@ variable "cidr" {  # this is declaring name
 variable "public_subnet_cidr" {
     type = string
 } 
+variable "private_subnet_cidr" {
+    type = string
+}
 variable "tags" {
     type = map
+}
+variable "internet_cidr" {
+    type = string
 }
