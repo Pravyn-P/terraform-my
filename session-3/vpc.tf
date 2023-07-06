@@ -1,21 +1,29 @@
 resource "aws_vpc" "main" {   # resource <resource name> <randomn name to detect for terraform, this name belongs to terrform>
     cidr_block = var.cidr
     instance_tenancy = "default"
-    tags = var.tags
+    tags = merge(var.tags, {
+        Name = "timing"
+    })
 }
 resource "aws_subnet" "public" {
     vpc_id = aws_vpc.main.id   # it will fetch vpc id created from above code
     cidr_block = var.public_subnet_cidr
-    tags = var.tags
+    tags = merge(var.tags, {
+        Name = "public-subnet"
+    })
 }
 resource "aws_subnet" "private-subnet" {
     vpc_id = aws_vpc.main.id
     cidr_block = "10.0.2.0/24"
-    tags = var.tags
+     tags = merge(var.tags, {
+        Name = "private-subnet"
+    })
 }
 resource "aws_internet_gateway" "main" {
     vpc_id = aws_vpc.main.id   # internet gateway depends on vpc
-    tags = var.tags
+     tags = merge(var.tags, {
+        Name = "timing-igw "
+    })
 }
 resource "aws_route_table" "public-rt" {
     vpc_id = aws_vpc.main.id
