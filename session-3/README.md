@@ -17,4 +17,4 @@ It is best practice to keep the tf state file in remote location like S3 for bet
 
 variables.tf is to declare variables. You can also provide default values from here, but it is not recommended.
 
-terraform.tfvars to provide default values to variables
+terraform.tfvars to provide default values to variables. It also overrides the default values mentioned in variables.tf file.

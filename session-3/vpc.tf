@@ -12,7 +12,7 @@ resource "aws_subnet" "public" {
         Name = "public-subnet"
     })
 }
-resource "aws_subnet" "private-subnet" {
+resource "aws_subnet" "private" {
     vpc_id = aws_vpc.main.id
     cidr_block = var.private_subnet_cidr
      tags = merge(var.tags, {
@@ -56,7 +56,7 @@ resource "aws_route_table" "private-rt" {   # for private route we don't attach 
         gateway_id = aws_nat_gateway.main.id
     }
     tags = merge(var.tags, {
-        Name = "priate-rt"
+        Name = "private-rt"
     })
 }
 resource "aws_route_table_association" "public-association" {
@@ -65,5 +65,5 @@ resource "aws_route_table_association" "public-association" {
 }
 resource "aws_route_table_association" "private-association" {
     route_table_id = aws_route_table.private-rt.id
-    subnet_id = aws_subnet.private-subnet.id
+    subnet_id = aws_subnet.private.id
 }
