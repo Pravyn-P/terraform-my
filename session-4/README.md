@@ -8,4 +8,13 @@ output "name-you-prefer" {
 }
 ```
 ### Data Sources
-Data source is usefull to get the information from cloud or any other external provider.
+Data source is usefull to get the information from cloud or any other external provider. This information will be used as inputs for your infrastructure.
+Syntax is
+```
+data "aws_data_source_name" "preffered-name" {
+
+}
+```
+
+### Functions
+Fuctions are nothing but a unit of work, you can use functions repeatedly wherever you want.
